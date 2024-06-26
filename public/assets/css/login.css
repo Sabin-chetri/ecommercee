@@ -1,0 +1,65 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('http://127.0.0.1:8000/assets/image/nature.jpg');
+    background-repeat: none;
+    background-size: cover;
+}
+fieldset{
+    /* border: 2px solid blue; */
+    width: 20rem;
+    min-height: 15.5rem;
+    max-height: 17.5rem;
+    background: rgba(0,0,0,0.1);
+    backdrop-filter: blur(2px);
+    /* background: red; */
+    padding: 20px;
+    border-radius: 12px;
+}
+input{
+    padding: 8px 12px;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-size: 17px;
+    outline: none;
+    width: 90%;
+    margin-bottom: 12px;
+}
+label{
+    font-size: 17px;
+    font-weight: 500;
+}
+legend{
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+}
+form fieldset .button{
+    display: flex;
+    flex-direction: row;
+}
+form fieldset .button div input{
+    padding: 10px;
+    transition: all 0.6s ease;
+    width: 5rem;
+    margin-right: 1rem; 
+    background-color: rgba(45, 44, 44, 0.641);
+    color: white;
+}
+form fieldset .button div input:hover{
+    background: black;
+    color: white;
+}
+.forget{
+    display: flex;
+    justify-content: space-between;
+    margin:0 0 10px 0;
+}
+.forget div a{
+    text-decoration: none;
+    color: #001797;
+}
