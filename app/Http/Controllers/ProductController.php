@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Users_Carts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -299,37 +300,66 @@ public function Summer(Request $request){
         return redirect('admin');
     }
     public function addToCart($id = null){
-        $product = Product::find($id);
-        $tem = Cart::find($id);
-        if(Auth::id()){
-                if(is_null($tem)){
+        // $product = Product::find($id);
+        // $tem = Cart::find($id);
+        // if(Auth::id()){
+        //         if(is_null($tem)){
+        //         $cart = new Cart();
+        //         $cart->id = $product->id;
+        //         $cart->productName = $product->productName;
+        //         $cart->productImage = $product->productImage;
+        //         $cart->productPrice = $product->productPrice;
+        //         $cart->save();
+        //         return redirect()->back()->with('message','Sucessfully item added to cart');
+        //         }
+        //         else{
+        //         return redirect()->back()->with('message','This item is already there');
+        //         }
+        // }
+        // else{
+        //     return redirect('login');
+        // }
+        $pro = Product::find($id);
+            $item = Cart::find($id);
+            // if(is_null($item)){
                 $cart = new Cart();
-                $cart->id = $product->id;
-                $cart->productName = $product->productName;
-                $cart->productImage = $product->productImage;
-                $cart->productPrice = $product->productPrice;
+                // $cart->id = $pro->id;
+                $cart->productname = $pro->productName;
+                $cart->productPrice = $pro->productPrice;
+                $cart->productImage = $pro->productImage;
                 $cart->save();
-                return redirect()->back()->with('message','Sucessfully item added to cart');
-                }
-                else{
-                return redirect()->back()->with('message','This item is already there');
-                }
-        }
-        else{
-            return redirect('login');
-        }
+                $userCart = new Users_Carts();
+                $userCart->userID = Auth::user()->id;
+                $userCart->cartID = $pro->id;
+                $userCart->save();
+                return redirect()->back()->with('message','Sucessfully added item to the cart');
+                // return Redirect('dashboard');
+            // }
+            // else{
+            //     return redirect()->back()->with('message','already');
+            // }
+            // return view('apple');
     }
     public function deleteCart($id){
         Cart::find($id)->delete();
         return redirect()->back();
     }
+    // public function appple(){
+    //     // $users = User::all();
+    //     $uname = Auth::User()->id;
+    //     $items = User::with('getCarts')->get();
+    //     return view('abcd',compact('uname'),['items'=>$items]);
+    // }
     public function openCart(){
         $products = Cart::all();
         if(Auth::id())
             {
-                $userName = Auth::User()->name;
-                $email = Auth::User()->email;
-                return view('cart',compact('products','userName','email'));
+                // $userName = Auth::User()->name;
+                // $email = Auth::User()->email;
+                $uname = Auth::User()->id;
+                $users = User::with('getCarts')->get();
+                return view('cart',compact('uname'),['users'=>$users]);
+                // return view('cart',compact('products','userName','email'));
             // return view('cart',compact('products'));
             }
         else
@@ -433,4 +463,7 @@ public function openprivaryandpolicy(){
         $all = Cart::with('getuser')->get();
         return view('viewdi',compact('all'));
     }
+
+
+    
 }

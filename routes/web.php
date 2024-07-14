@@ -65,3 +65,4 @@ Route::get('viewd',[ProductController::class,'viewdi']);
 Route::get('privacyandpolicy',[ProductController::class,'openprivaryandpolicy']);
 Route::get('termsandcondition',[ProductController::class,'opentermsandcondition']);
 Route::get('viewcartitem/{id}',[ProductController::class,'viewitem']);
+Route::get('abcd',[ProductController::class,'appple']);

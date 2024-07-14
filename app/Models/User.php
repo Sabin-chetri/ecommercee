@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Cart;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,9 +10,6 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-    public function getcarts(){
-        return $this->hasMany(Cart::class);
-    }
     /**
      * The attributes that are mass assignable.
      *
@@ -47,5 +44,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    
+    public function getCarts(){
+        return $this->belongsToMany(Cart::class,'users_carts','userID','cartID');
     }
 }
