@@ -29,8 +29,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-{{--           
-            @foreach ($products as $product)
+          
+            @foreach ($users as $user)
+        @if ($uname == $user->id)
+            
+       @foreach ($user->getCarts as $product)
             <div style="display: flex;gap:20px;align-items:center;justify-content:space-between;">
                 <img style="width: 50px;height: 50px; margin-bottom:5px;" src="{{url('upload')}}/{{$product->productImage}}" alt="">
                 
@@ -38,7 +41,9 @@
 
                 <h6>Rs. <span id="abcd">{{$product->productPrice}}</span></h6>
             </div>
-            @endforeach --}}
+            @endforeach
+            @endif
+            @endforeach
             
 <hr>
             <div style="display: flex;justify-content:flex-end;">
