@@ -2,8 +2,6 @@ services:
   - type: web
     name: laravel-ecommerce
     runtime: docker
-    buildCommand: composer install --no-dev --optimize-autoloader && php artisan optimize
-    startCommand: apache2-foreground
     envVars:
       - key: APP_ENV
         value: production
