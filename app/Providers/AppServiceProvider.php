@@ -20,5 +20,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
+        // Force all links, assets, and forms to use HTTPS on Render production
+        if (config('app.env') === 'production' || env('APP_ENV') === 'production') {
+            URL::forceScheme('https');
+        }
     }
 }
