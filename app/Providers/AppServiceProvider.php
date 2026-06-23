@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\URL; // <-- This tells PHP exactly where to find the real URL router!
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,12 +20,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Schema::defaultStringLength(191);
-        // Force all links, assets, and forms to use HTTPS on Render production
+        // Force all assets, links, and forms to use HTTPS on Render production
         if (config('app.env') === 'production' || env('APP_ENV') === 'production') {
             URL::forceScheme('https');
         }
+        Schema::defaultStringLength(191);
     }
-}
-        
+}      
         
