@@ -458,8 +458,8 @@
                             <td>{{$customer->location}}</td>
                             <td>{{$customer->contact}}</td>
                             <td>
-                                <a href="{{url('editCustomer')}}/{{$customers->id}}" style="color:blue;"><i class="fa-solid fa-pen-to-square"></i></a>
-                                {{-- <a href="{{url('deleteProduct')}}/{{$product->id}}"><i class="fa-solid fa-trash" style="color:red;"></i></a> --}}
+                                <a href="{{url('editCustomer')}}/{{$customer->id}}" style="color:blue;"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{url('deleteCustomer')}}/{{$customer->id}}"><i class="fa-solid fa-trash" style="color:red;"></i></a>
                             </td>
                         </tr>
                         @endforeach

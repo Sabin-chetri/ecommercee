@@ -300,25 +300,6 @@ public function Summer(Request $request){
         return redirect('admin');
     }
     public function addToCart($id = null){
-        // $product = Product::find($id);
-        // $tem = Cart::find($id);
-        // if(Auth::id()){
-        //         if(is_null($tem)){
-        //         $cart = new Cart();
-        //         $cart->id = $product->id;
-        //         $cart->productName = $product->productName;
-        //         $cart->productImage = $product->productImage;
-        //         $cart->productPrice = $product->productPrice;
-        //         $cart->save();
-        //         return redirect()->back()->with('message','Sucessfully item added to cart');
-        //         }
-        //         else{
-        //         return redirect()->back()->with('message','This item is already there');
-        //         }
-        // }
-        // else{
-        //     return redirect('login');
-        // }
         $pro = Product::find($id);
             $item = Cart::find($id);
             // if(is_null($item)){
@@ -340,9 +321,35 @@ public function Summer(Request $request){
             // }
             // return view('apple');
     }
-    public function deleteCart($id){
-        Cart::find($id)->delete();
-        return redirect()->back();
+    public function deleteCart($userId, $cartId){
+        $user = User::findOrFail($userId);
+$user->carts()->where('cartID', $cartId)->delete();
+        // Cart::find($id)->delete(); 
+        // return redirect()->back();
+        // Validate the request input
+
+
+
+        /*
+    $validated = $request->validate([
+        'userID' => 'required|exists:users,id',  // Ensure user exists
+        'cartID' => 'required|exists:carts,id', // Ensure cart exists
+    ]);
+
+    // Attempt to delete the record from users_carts
+    $deleted = Users_Carts::where('userID', $validated['userID'])
+                ->where('cartID', $validated['cartID'])
+                ->delete();
+
+    if ($deleted) {
+        return response()->json([
+            'message' => 'Item removed from user cart successfully.'
+        ], 200);
+    }
+
+    return response()->json([
+        'message' => 'Item not found in user cart or already deleted.'
+    ], 404);*/
     }
     // public function appple(){
     //     // $users = User::all();

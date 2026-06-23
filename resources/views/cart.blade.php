@@ -99,12 +99,12 @@
             </div>
             <div class="cartTotalPrice">
                 <h4 id="fin">
-                @php
+                {{-- @php
                     $user = 5;
                     $final = $product->productPrice*$user;
                     echo "$final"
-                @endphp
-                {{-- {{$product->productPrice}} --}}
+                @endphp --}}
+                {{$product->productPrice}}
                 </h4>
             </div>
             <div>
