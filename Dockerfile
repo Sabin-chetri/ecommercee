@@ -41,4 +41,4 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.
 RUN a2enmod rewrite
 
 # Run migrations automatically before booting up Apache
-CMD php artisan migrate --force && apache2-foreground0
+CMD php artisan config:clear && php artisan migrate --force && apache2-foreground
