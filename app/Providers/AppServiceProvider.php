@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL; // <-- This tells PHP exactly where to find the real URL router!
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -11,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        
+        //
     }
 
     /**
@@ -26,3 +27,5 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 }
+        
+        
